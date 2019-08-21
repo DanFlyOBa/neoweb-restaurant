@@ -1,0 +1,17 @@
+{# templates/Restaurant/index.html.twig #}
+
+{% extends "base.html.twig" %}
+
+{% block body %}
+	<h2>Restaurants disponibles : </h2>
+	{# On vérifie s'il existe des restaurants #}
+	{% if not restaurants is empty %}
+	<ul>
+		{% for restaurant in restaurants %}
+		<li><a href="{{ path('restaurant_view', {'id': restaurant.id}) }}">{{ restaurant.name }}</a></li>
+		{% endfor %}
+	</ul>
+	{% else %}
+		<p>Aucun restaurant disponible</p>
+	{% endif %}
+{% endblock %}

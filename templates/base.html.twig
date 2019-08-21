@@ -1,0 +1,25 @@
+{# templates/base.html.twig #}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>{% block title %}Restaurants{% endblock %}</title>
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	</head>
+	<body>
+		<div class="container">
+			<div id="header" class="jumbotron">
+			  <h1><a href="{{ path('restaurant_index') }}">Restaurants</a></h1>
+			</div>
+			{# On affiche ici les messages flash #}
+			{% for message in app.flashes('notice') %}
+			<div>
+				{{ message }}
+			</div>
+			{% endfor %}
+			<div>
+				{% block body %}{% endblock %}
+			</div>
+		</div>
+	</body>
+</html>

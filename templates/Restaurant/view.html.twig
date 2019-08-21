@@ -1,0 +1,28 @@
+{# templates/Restaurant/view.html.twig #}
+
+{% extends "base.html.twig" %}
+
+{% block title %}{{ restaurant.name }} - {{ parent() }}{% endblock %}
+
+{% block body %}
+	<h2>Horaires pour {{ restaurant.name }} : </h2>
+	{# On vérifie s'il existe des horaires pour le restaurant #}
+	{% if not horaires is empty %}
+	<ul>
+		{% for jour,creneaux in horaires %}
+		<li>{{ jour }} : 
+		{# On vérifie s'il existe au moins un créneau pour le jour #}
+		{% if (not creneaux is empty) and (not creneaux.0 is empty) %}
+			{% for creneau in creneaux %}
+				{{ creneau }}{% if not loop.last %}, {% endif %}
+			{% endfor %}
+		{% else %}
+			Pas de créneau renseigné pour ce jour
+		{% endif %}
+		</li>
+		{% endfor %}
+	</ul>
+	{% else %}
+		<p>Aucun horaire disponible</p>
+	{% endif %}
+{% endblock %}
